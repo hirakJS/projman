@@ -3,8 +3,23 @@
   <head>
     <meta charset="utf-8">
     <title>projman</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   </head>
   <body>
     <h2>projman v0.1</h2>
+    <br>
+    <div id="cond"></div>
+    <div id="temp"></div>
+
+    <script>
+      const condEl = document.querySelector('#cond');
+      const tempEl = document.querySelector('#temp');
+
+      axios.get('https://us-central1-hello-ce0ea.cloudfunctions.net/getBostonWeather')
+      .then(response => {
+        condEl.innerHTML = 'conditions: ' + response.data.conditions;
+        tempEl.innerHTML = 'temperature: ' + response.data.temp;
+      })
+    </script>
   </body>
 </html>
